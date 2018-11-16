@@ -1,0 +1,63 @@
+baseurl = "https://blog.moonlightming.top"
+DefaultContentLanguage = "zh"
+title = "Bubble_blog"
+theme = "beautifulhugo"
+# metaDataFormat = "yaml"
+#pygmentsStyle = "fruity"
+pygmentsUseClasses = true
+pygmentsCodeFences = true
+#pygmentsCodefencesGuessSyntax = true
+#pygmentsUseClassic = true
+#pygmentOptions = "linenos=inline"
+#disqusShortname = "XXX"
+#googleAnalytics = "XXX"
+enableRobotsTXT = true
+disableLiveReload = true
+[Params]
+#  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
+  subtitle = "听说这里填两句诗会比较有逼格"
+  logo = "img/avatar-icon.png"
+  favicon = "img/favicon.ico"
+  dateFormat = "January 2, 2006"
+  commit = true
+  rss = true
+  comments = true
+  readingTime = false
+  wordCount = false
+  useHLJS = true
+  socialShare = false
+  delayDisqus = true
+  showRelatedPosts = true
+
+#[[Params.bigimg]]
+#  src = "img/triangle.jpg"
+#  desc = "Triangle"
+#[[Params.bigimg]]
+#  src = "img/sphere.jpg"
+#  desc = "Sphere"
+#  # position: see values of CSS background-position.
+#  position = "center top"
+#[[Params.bigimg]]
+#  src = "img/hexagon.jpg"
+#  desc = "Hexagon"
+
+[Author]
+  name = "_Bubble"
+#  website = "yourwebsite.com"
+  email = "605365071@qq.com"
+  github = "moonlightMing"
+
+[[menu.main]]
+    name = "Blog"
+    url = ""
+    weight = 1
+
+[[menu.main]]
+    name = "Tags"
+    url = "tags/"
+    weight = 2
+
+[[menu.main]]
+    name = "About"
+    url = "page/about/"
+    weight = 3

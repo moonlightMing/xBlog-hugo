@@ -1,0 +1,6 @@
+version: '3'
+services:
+  xblog-hugo:
+    image: registry.cn-shenzhen.aliyuncs.com/moonlightming/xblog-hugo:latest
+    ports: 
+      - "8000:80"
