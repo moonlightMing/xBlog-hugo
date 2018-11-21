@@ -10,3 +10,7 @@ Etcd简单来说就是个分布式K/V数据库,在K8S等分布式服务中有重
 
 <!--more-->
 
+## SDK安装
+```shell
+go get go.etcd.io/etcd/clientv3
+```
