@@ -11,6 +11,7 @@ draft: false
 <!--more-->
 
 ## 部署
+
 这里只讲RH/CentOS系列
 
 ```shell
@@ -23,7 +24,9 @@ yum install -y percona-xtrabackup-24
 ```
 
 ## 使用前准备
+
 ### 权限
+
 由于备份脚本里数据库帐号都是明文，因此对备份帐号的权限需要最小化设置
 
 最小权限示例：
@@ -35,6 +38,7 @@ mysql> FLUSH PRIVILEGES;
 ```
 
 ### 配置
+
 支持配置文件形式，不过用的更多的是命令行参数。
 
 另外，/etc/my.cnf文件中必须要有如下选项
@@ -130,6 +134,7 @@ innobackupex            \
 ```
 
 #### 数据拷回
+
 ```shell
 innobackupex        \
         --copy-back     \
@@ -143,12 +148,12 @@ innobackupex        \
 
 ## 单库备份
 
-### 
 ```shell
 innobackupex --user=dpkuser --password=123456 --include='^xn_(\d)*' /data/backups/
 ```
 
 
 ## 增量备份
+
 
 增量备份需要先进行一次全备，然后在此基础上进行定时增量备份，实际使用过程中感觉特别繁琐，因为恢复也是按照备份文件倒序进行还原。如果数量大的话恢复起来效率不比binlog日志快，因此在公司里实际使用还是全量+binlog的方式进行。
