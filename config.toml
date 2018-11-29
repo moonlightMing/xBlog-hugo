@@ -1,8 +1,8 @@
 baseurl = "https://blog.moonlightming.top"
-DefaultContentLanguage = "zh"
+DefaultContentLanguage = "zh-CN"
 title = "Bubble_blog"
 theme = "beautifulhugo"
-# metaDataFormat = "yaml"
+#metaDataFormat = "yaml"
 #pygmentsStyle = "fruity"
 pygmentsUseClasses = true
 pygmentsCodeFences = true

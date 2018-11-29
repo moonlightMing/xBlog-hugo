@@ -1,12 +1,25 @@
 $(document).ready(function () {
-    console.log("hellofwkefjwpefjpwe");
-    var lock = false;
-    $.get("打点服务器的地址",
+    $.get("https://blog.moonlightming.top/dig",
         {
-            "time": gettime(),
-            "ip": getip(),
-        }, function () {
-            lock = true;
+            "url": get_url(),
+            "rafer": get_refer(),
+            "user_agent": get_user_agent(),
+            // "cookies": getcookie(),
         })
-
 });
+
+function get_url() {
+    return window.location.href;
+}
+
+function get_refer() {
+    return document.referrer;
+}
+
+function get_cookie() {
+    return document.cookie;
+}
+
+function get_user_agent() {
+    return navigator.userAgent;
+}
