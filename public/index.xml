@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bubble_blog</title>
+    <link>https://blog.moonlightming.top/</link>
+    <description>Recent content on Bubble_blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>605365071@qq.com (_Bubble)</managingEditor>
+    <webMaster>605365071@qq.com (_Bubble)</webMaster>
+    <lastBuildDate>Wed, 28 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.moonlightming.top/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Docker容器内时间与宿主机不一致问题</title>
+      <link>https://blog.moonlightming.top/post/2018-11-28-docker%E5%AE%B9%E5%99%A8%E5%86%85%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Wed, 28 Nov 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-11-28-docker%E5%AE%B9%E5%99%A8%E5%86%85%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/</guid>
+      <description>&lt;p&gt;容器具有优良的隔离性，但是隔离性也意味着应用无法获取到宿主机的部分信息。例如当前时区，这个问题的后果是应用获取的当前时间与实际有差别，这个对业务及应用日志影响很大。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL备份工具 Xtrabackup</title>
+      <link>https://blog.moonlightming.top/post/2018-11-14-mysql%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-11-14-mysql%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/</guid>
+      <description>&lt;p&gt;虽然现在云数据库流行，但是总有特殊情况需要自行搭建MySQL服务。那么备份就是重中之重，谁也不会想使用到备份，但生产环境上不可能没有备份。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Docker开启远程访问</title>
+      <link>https://blog.moonlightming.top/post/2018-11-08-docker%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</link>
+      <pubDate>Mon, 12 Nov 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-11-08-docker%E5%BC%80%E5%90%AF%E8%BF%9C%E7%A8%8B%E8%AE%BF%E9%97%AE/</guid>
+      <description>&lt;p&gt;Docker本身有远程API可供调用，用在复杂的调度场景，可以实现更加自由的定制化需求(比如调度平台什么的)。默认是不开启的，因此本章说下如何开启及一些注意事项。文中例子都是在CentOS7环境下。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>CentOS7部署VirtualBox</title>
+      <link>https://blog.moonlightming.top/post/2018-06-18-centos7%E9%83%A8%E7%BD%B2virtualbox/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-06-18-centos7%E9%83%A8%E7%BD%B2virtualbox/</guid>
+      <description>&lt;p&gt;kvm和virtualbox在小企业内部使用还是比较广泛的，这里做一下部署总结。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用腾讯云COS做博客图床和Picgo工具</title>
+      <link>https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/</link>
+      <pubDate>Thu, 07 Jun 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/</guid>
+      <description>&lt;p&gt;之前做博客的时候考虑过图片放服务端，不过由于静态文件多了之后难管理、占体积、还吃服务器带宽。所以改为对象云存储，国内主流的有阿里OSS、腾讯COS、七牛云KODO。我这里选择的是腾讯COS（主要是免费）做博客图床。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MySQL强一致性方案PXC</title>
+      <link>https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/</link>
+      <pubDate>Sat, 02 Jun 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/</guid>
+      <description>&lt;p&gt;之前工作的公司，MySQL集群架构使用的是Replication，也就是自带的主从同步来保证数据备份。之后推出的架构中有一种双机高可用方案，宕掉一台机器后依然保证服务可用，数据库使用主主完成。&lt;/p&gt;
+
+&lt;p&gt;但是主主本身有一定缺陷，比如其中有一台MySQL因网络问题主从连接故障后，两者的数据库就会不同步，由于双主两台机器都在做写入操作，造成数据混乱引出灾难性的后果，后期恢复也很难实施。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>修改docker默认存储位置</title>
+      <link>https://blog.moonlightming.top/post/2018-06-01-%E4%BF%AE%E6%94%B9docker%E9%BB%98%E8%AE%A4%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE/</link>
+      <pubDate>Fri, 01 Jun 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-06-01-%E4%BF%AE%E6%94%B9docker%E9%BB%98%E8%AE%A4%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE/</guid>
+      <description>&lt;p&gt;由于docker一些默认容器运行和存储卷默认路径为/var/lib/docker，这一般为系统目录，长期使用下会因系统盘空间耗尽造成服务出现问题。生产标准下这个目录需要替换为大容量存储盘使用。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Elasticsearch之使用ik中文分词器</title>
+      <link>https://blog.moonlightming.top/post/2018-05-28-elasticsearch%E4%BD%BF%E7%94%A8ik%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-05-28-elasticsearch%E4%BD%BF%E7%94%A8ik%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/</guid>
+      <description>&lt;p&gt;分词器是全文检索引擎非常重要的一部分，用于将一段话拆分为一系列词语，进行文本分析用以维护内部倒排索引。
+之前一直使用默认分词器，博客上线后实测对中文的检索效果非常差，因此了解了下这块内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>关于博客整体使用技术介绍</title>
+      <link>https://blog.moonlightming.top/post/2018-05-25-%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%95%B4%E4%BD%93%E4%BD%BF%E7%94%A8%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Fri, 25 May 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-05-25-%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%95%B4%E4%BD%93%E4%BD%BF%E7%94%A8%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D/</guid>
+      <description>&lt;p&gt;不积跬步无以至千里。个人日常的积累是十分重要的，同时也为了回顾这一年来所学，自己做了这个博客。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>About me</title>
+      <link>https://blog.moonlightming.top/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/page/about/</guid>
+      <description> 年龄：22 坐标：武汉 职业：运维/运维开发  </description>
+    </item>
+    
+  </channel>
+</rss>

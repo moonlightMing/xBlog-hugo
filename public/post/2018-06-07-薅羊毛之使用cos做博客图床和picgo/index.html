@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>使用腾讯云COS做博客图床和Picgo工具 - Bubble_blog</title>
+  <meta property="og:title" content="使用腾讯云COS做博客图床和Picgo工具" />
+  <meta name="twitter:title" content="使用腾讯云COS做博客图床和Picgo工具" />
+  <meta name="description" content="薅羊毛">
+  <meta property="og:description" content="薅羊毛">
+  <meta name="twitter:description" content="薅羊毛">
+  <meta name="author" content="_Bubble"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble_blog",
+    
+    "url": "https://blog.moonlightming.top"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https://blog.moonlightming.top"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https://blog.moonlightming.top",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/",
+          "name": "使用腾讯云 c o s做博客图床和 picgo工具"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "_Bubble"
+  },
+  "headline": "使用腾讯云COS做博客图床和Picgo工具",
+  "description" : "之前做博客的时候考虑过图片放服务端，不过由于静态文件多了之后难管理、占体积、还吃服务器带宽。所以改为对象云存储，国内主流的有阿里OSS、腾讯COS、七牛云KODO。我这里选择的是腾讯COS（主要是免费）做博客图床。
+
+",
+  "inLanguage" : "zh",
+  "wordCount": 25,
+  "datePublished" : "2018-06-07T00:00:00",
+  "dateModified" : "2018-06-07T00:00:00",
+  "image" : "https://blog.moonlightming.top/img/avatar-icon.png",
+  "keywords" : [ "运维开发" ],
+  "mainEntityOfPage" : "https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https://blog.moonlightming.top",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https://blog.moonlightming.top/img/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="使用腾讯云COS做博客图床和Picgo工具" />
+<meta property="og:description" content="薅羊毛">
+<meta property="og:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+<meta property="og:url" content="https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bubble_blog" />
+  <meta name="twitter:title" content="使用腾讯云COS做博客图床和Picgo工具" />
+  <meta name="twitter:description" content="薅羊毛">
+  <meta name="twitter:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.moonlightming.top/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bubble_blog" />
+
+  <meta name="generator" content="Hugo 0.50" />
+  <link rel="alternate" href="https://blog.moonlightming.top/index.xml" type="application/rss+xml" title="Bubble_blog">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.moonlightming.top/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://blog.moonlightming.top/css/highlight.min.css" /><link rel="stylesheet" href="https://blog.moonlightming.top/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.moonlightming.top">Bubble_blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Bubble_blog" href="https://blog.moonlightming.top">
+            <img class="avatar-img" src="https://blog.moonlightming.top/img/avatar-icon.png" alt="Bubble_blog" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>使用腾讯云COS做博客图床和Picgo工具</h1>
+              
+              
+              
+                
+                  <h2 class="post-subheading">薅羊毛</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;发表于 June 7, 2018
+  
+  
+  
+  _Bubble
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>之前做博客的时候考虑过图片放服务端，不过由于静态文件多了之后难管理、占体积、还吃服务器带宽。所以改为对象云存储，国内主流的有阿里OSS、腾讯COS、七牛云KODO。我这里选择的是腾讯COS（主要是免费）做博客图床。</p>
+
+<p></p>
+
+<h2 id="对象存储">对象存储</h2>
+
+<p>对象存储，叫做基于对象的存储，也就是通常意义的键值存储，其接口就是简单的GET,PUT,DEL和其他扩展。</p>
+
+<p>如果不理解也没关系，使用时理解为一般的网络存储就好。文件是通过URL的方式进行访问。</p>
+
+<h3 id="优点">优点</h3>
+
+<ul>
+<li>云服务商提供了控制台，便于管理</li>
+<li>不占用自己服务器的磁盘空间</li>
+<li>提供API支持，应用广泛，不光是做博客图床</li>
+<li>国内这类存储一般都支持CDN站点加速，访问速度快，不占自己服务器带宽</li>
+</ul>
+
+<h2 id="使用">使用</h2>
+
+<p>云服务厂商都提供了自己的使用文档和入门视频：<a href="https://cloud.tencent.com/document/product/436">腾讯云文档平台</a></p>
+
+<p>这里主要说一下使用时要注意的点：</p>
+
+<ul>
+<li>公有读私有写</li>
+</ul>
+
+<p>博客图床属于所有人可以访问，但只能所有者有编辑权限，因此访问权限设置为公有读私有写：
+<img src="https://blog-1253351524.cossh.myqcloud.com/images/20180607210548.png" alt="" /></p>
+
+<ul>
+<li>防盗链</li>
+</ul>
+
+<p>由于对象存储使用URL进行文件的访问，而做博客图床权限设置都为公有可读，如果别人拿了你的图片URL放在自己的网站里，那么流量都是走你的存储，免费的流量瞬间就会用光。因此需要防盗链，编辑白名单只允许自己的站点请求该图片。
+<img src="https://images.moonlightming.top/images/20180607204734.png" alt="" /></p>
+
+<ul>
+<li>https</li>
+</ul>
+
+<p>如果自己的网站配置了https，但图片是http，那么浏览器自己会警告，提示含有不安全内容。虽然不影响使用但是有强迫症的完美主义人群怎么能忍。默认支持https，只需将访问URL的http协议修改为https即可。</p>
+
+<ul>
+<li>CDN</li>
+</ul>
+
+<p>腾讯云每月提供50G免费对象存储流量和10G的CDN加速流量，CDN需要控制台内开启，并且访问的域名是不一样的，需要自己处理替换。比较好的处理方式是使用自定义域名功能，这样无论以后更换对象存储还是切换是否CDN加速都比较方便，不至于修改所有的图片URL。自己首先要注册一个域名，在对象和存储的自定义域名配置，配置后需要在域名解析设置里设置域名→CNAME的解析。
+<img src="https://images.moonlightming.top/images/20180607225919.png" alt="" /></p>
+
+<p>如果想要使用https，需要在自定义域名的高级配置里配置证书。</p>
+
+<p>云服务商提供了客户端方便使用者在本地进行文件管理，我这里推荐一个第三方开源的图床管理工具：Picgo</p>
+
+<h2 id="picgo">Picgo</h2>
+
+<p>github地址：<a href="https://github.com/Molunerfinn/PicGo">PicGO</a></p>
+
+<p>一个针对图床上传客户端。优点在于上传完后可以自己生成markdown格式的图片链接，方便写博客使用。支持多种图床。放一些UI图，具体的可以去作者首页查看试用。
+<img src="https://images.moonlightming.top/images/20180607232609.png" alt="" />
+<img src="https://images.moonlightming.top/images/20180607232838.png" alt="" />
+<img src="https://images.moonlightming.top/images/20180607232848.png" alt="" /></p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blog.moonlightming.top/tags/%E8%BF%90%E7%BB%B4%E5%BC%80%E5%8F%91/">运维开发</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+          
+          <h4 class="see-also">也可以看看</h4>
+          <ul>
+          
+            <li><a href="/post/2018-06-01-%E4%BF%AE%E6%94%B9docker%E9%BB%98%E8%AE%A4%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE/">修改docker默认存储位置</a></li>
+          
+            <li><a href="/post/2018-05-28-elasticsearch%E4%BD%BF%E7%94%A8ik%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/">Elasticsearch之使用ik中文分词器</a></li>
+          
+            <li><a href="/post/2018-05-25-%E5%85%B3%E4%BA%8E%E5%8D%9A%E5%AE%A2%E6%95%B4%E4%BD%93%E4%BD%BF%E7%94%A8%E6%8A%80%E6%9C%AF%E4%BB%8B%E7%BB%8D/">关于博客整体使用技术介绍</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/" data-toggle="tooltip" data-placement="top" title="MySQL强一致性方案PXC">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://blog.moonlightming.top/post/2018-06-18-centos7%E9%83%A8%E7%BD%B2virtualbox/" data-toggle="tooltip" data-placement="top" title="CentOS7部署VirtualBox">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:605365071@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/moonlightMing" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://blog.moonlightming.top/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              _Bubble
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2018
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.moonlightming.top">Bubble_blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.50</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.moonlightming.top/js/main.js"></script>
+<script src="https://blog.moonlightming.top/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://blog.moonlightming.top/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+<script  language="javascript" type="text/javascript" src="/js/count.js"></script>
+
+  </body>
+</html>
+
