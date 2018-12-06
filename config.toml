@@ -1,5 +1,5 @@
 baseurl = "https://blog.moonlightming.top"
-DefaultContentLanguage = "zh-CN"
+DefaultContentLanguage = "zh"
 title = "Bubble_blog"
 theme = "beautifulhugo"
 #metaDataFormat = "yaml"
