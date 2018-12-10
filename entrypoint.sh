@@ -9,5 +9,5 @@ PORT=80
 ./bin/hugo server -v                                \
     -p ${PORT}                                      \
     --bind=${BIND_ADDR}                             \
-    --baseURL="https://blog.moonlightming.top/" \
+    --baseURL="https://blog.moonlightming.top"      \
     --appendPort=false
