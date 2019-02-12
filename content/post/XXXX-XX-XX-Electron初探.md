@@ -62,4 +62,4 @@ body {
 
 ## 静态文件处理
 
-Electron打包时默认不带
+Electron打包时会将代码打包成asar格式文件，
