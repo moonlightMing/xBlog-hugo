@@ -2,10 +2,10 @@ $(document).ready(function () {
     $.get("https://blog.moonlightming.top/dig",
         {
             "url": get_url(),
-            "rafer": get_refer(),
-            "user_agent": get_user_agent(),
-            // "cookies": getcookie(),
-        })
+            "refer": get_refer(),
+            "ua": get_user_agent(),
+        }
+    )
 });
 
 function get_url() {
@@ -14,10 +14,6 @@ function get_url() {
 
 function get_refer() {
     return document.referrer;
-}
-
-function get_cookie() {
-    return document.cookie;
 }
 
 function get_user_agent() {
