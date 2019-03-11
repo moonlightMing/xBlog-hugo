@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Elk on Bubble_blog</title>
+    <link>https://blog.moonlightming.top/tags/elk/</link>
+    <description>Recent content in Elk on Bubble_blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>605365071@qq.com (_Bubble)</managingEditor>
+    <webMaster>605365071@qq.com (_Bubble)</webMaster>
+    <lastBuildDate>Mon, 28 May 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.moonlightming.top/tags/elk/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Elasticsearch之使用ik中文分词器</title>
+      <link>https://blog.moonlightming.top/post/2018-05-28-elasticsearch%E4%BD%BF%E7%94%A8ik%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/</link>
+      <pubDate>Mon, 28 May 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-05-28-elasticsearch%E4%BD%BF%E7%94%A8ik%E4%B8%AD%E6%96%87%E5%88%86%E8%AF%8D%E5%99%A8/</guid>
+      <description>&lt;p&gt;分词器是全文检索引擎非常重要的一部分，用于将一段话拆分为一系列词语，进行文本分析用以维护内部倒排索引。
+之前一直使用默认分词器，博客上线后实测对中文的检索效果非常差，因此了解了下这块内容。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

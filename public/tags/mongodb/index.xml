@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Mongodb on Bubble_blog</title>
+    <link>https://blog.moonlightming.top/tags/mongodb/</link>
+    <description>Recent content in Mongodb on Bubble_blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>605365071@qq.com (_Bubble)</managingEditor>
+    <webMaster>605365071@qq.com (_Bubble)</webMaster>
+    <lastBuildDate>Wed, 14 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.moonlightming.top/tags/mongodb/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用Golang读写mongoDB</title>
+      <link>https://blog.moonlightming.top/post/2018-11-19-%E4%BD%BF%E7%94%A8golang%E8%AF%BB%E5%86%99mongodb/</link>
+      <pubDate>Wed, 14 Nov 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-11-19-%E4%BD%BF%E7%94%A8golang%E8%AF%BB%E5%86%99mongodb/</guid>
+      <description>&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Shell on Bubble_blog</title>
+    <link>https://blog.moonlightming.top/tags/shell/</link>
+    <description>Recent content in Shell on Bubble_blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>605365071@qq.com (_Bubble)</managingEditor>
+    <webMaster>605365071@qq.com (_Bubble)</webMaster>
+    <lastBuildDate>Sun, 10 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.moonlightming.top/tags/shell/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Shell脚本笔记整理（一） 变量、字符串</title>
+      <link>https://blog.moonlightming.top/post/2019-03-10-shell%E8%84%9A%E6%9C%AC%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%80%E5%8F%98%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/</link>
+      <pubDate>Sun, 10 Mar 2019 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2019-03-10-shell%E8%84%9A%E6%9C%AC%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86%E4%B8%80%E5%8F%98%E9%87%8F%E5%AD%97%E7%AC%A6%E4%B8%B2/</guid>
+      <description>&lt;p&gt;内容源于网上视频教程，自己整理下供需要时查询。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

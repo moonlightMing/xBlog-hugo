@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>前端 on Bubble_blog</title>
+    <link>https://blog.moonlightming.top/tags/%E5%89%8D%E7%AB%AF/</link>
+    <description>Recent content in 前端 on Bubble_blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>605365071@qq.com (_Bubble)</managingEditor>
+    <webMaster>605365071@qq.com (_Bubble)</webMaster>
+    <lastBuildDate>Tue, 12 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.moonlightming.top/tags/%E5%89%8D%E7%AB%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Electron实践记录</title>
+      <link>https://blog.moonlightming.top/post/xxxx-xx-xx-electron%E5%88%9D%E6%8E%A2/</link>
+      <pubDate>Tue, 12 Feb 2019 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/xxxx-xx-xx-electron%E5%88%9D%E6%8E%A2/</guid>
+      <description>&lt;p&gt;接触Electron已经快一个月了，当初是为了寻找一个快速构建客户端程序的方法，用于编写一个工具。对于编写过前端的人来说，能用js写客户端来降低学习成本再好不过。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

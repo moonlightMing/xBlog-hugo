@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>MySQL强一致性方案PXC - Bubble_blog</title>
+  <meta property="og:title" content="MySQL强一致性方案PXC" />
+  <meta name="twitter:title" content="MySQL强一致性方案PXC" />
+  <meta name="description" content="docker实战">
+  <meta property="og:description" content="docker实战">
+  <meta name="twitter:description" content="docker实战">
+  <meta name="author" content="_Bubble"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble_blog",
+    
+    "url": "https://blog.moonlightming.top"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https://blog.moonlightming.top"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https://blog.moonlightming.top",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/",
+          "name": "My s q l强一致性方案 p x c"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "_Bubble"
+  },
+  "headline": "MySQL强一致性方案PXC",
+  "description" : "之前工作的公司，MySQL集群架构使用的是Replication，也就是自带的主从同步来保证数据备份。之后推出的架构中有一种双机高可用方案，宕掉一台机器后依然保证服务可用，数据库使用主主完成。
+但是主主本身有一定缺陷，比如其中有一台MySQL因网络问题主从连接故障后，两者的数据库就会不同步，由于双主两台机器都在做写入操作，造成数据混乱引出灾难性的后果，后期恢复也很难实施。
+
+",
+  "inLanguage" : "zh",
+  "wordCount": 107,
+  "datePublished" : "2018-06-02T00:00:00",
+  "dateModified" : "2018-06-02T00:00:00",
+  "image" : "https://blog.moonlightming.top/img/avatar-icon.png",
+  "keywords" : [ "运维, mysql" ],
+  "mainEntityOfPage" : "https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https://blog.moonlightming.top",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https://blog.moonlightming.top/img/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="MySQL强一致性方案PXC" />
+<meta property="og:description" content="docker实战">
+<meta property="og:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+<meta property="og:url" content="https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bubble_blog" />
+  <meta name="twitter:title" content="MySQL强一致性方案PXC" />
+  <meta name="twitter:description" content="docker实战">
+  <meta name="twitter:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.moonlightming.top/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://blog.moonlightming.top/post/2018-06-02-mysql%E5%BC%BA%E4%B8%80%E8%87%B4%E6%80%A7%E6%96%B9%E6%A1%88pxc/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bubble_blog" />
+
+  <meta name="generator" content="Hugo 0.50" />
+  <link rel="alternate" href="https://blog.moonlightming.top/index.xml" type="application/rss+xml" title="Bubble_blog">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.moonlightming.top/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://blog.moonlightming.top/css/highlight.min.css" /><link rel="stylesheet" href="https://blog.moonlightming.top/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+<meta name="baidu-site-verification" content="lf5PdTH7W8" />
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.moonlightming.top">Bubble_blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Bubble_blog" href="https://blog.moonlightming.top">
+            <img class="avatar-img" src="https://blog.moonlightming.top/img/avatar-icon.png" alt="Bubble_blog" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>MySQL强一致性方案PXC</h1>
+              
+              
+              
+                
+                  <h2 class="post-subheading">docker实战</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;发表于 June 2, 2018
+  
+  
+  
+  _Bubble
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>之前工作的公司，MySQL集群架构使用的是Replication，也就是自带的主从同步来保证数据备份。之后推出的架构中有一种双机高可用方案，宕掉一台机器后依然保证服务可用，数据库使用主主完成。</p>
+
+<p>但是主主本身有一定缺陷，比如其中有一台MySQL因网络问题主从连接故障后，两者的数据库就会不同步，由于双主两台机器都在做写入操作，造成数据混乱引出灾难性的后果，后期恢复也很难实施。</p>
+
+<p></p>
+
+<p>PXC大致原理为：当有写入修改操作时，将该操作在集群内所有机器上都执行一遍，只有所有机器都确认完成后，这条操作才算成功。大致可以总结为以下几个特点：</p>
+
+<ul>
+<li>强一致性，要么全成功，要么全失败，保证每个节点数据一致</li>
+<li>数据一致，意味着全部节点可读可写，常规读写分离变负载均衡</li>
+<li>无同步延迟</li>
+<li>因为所有节点都要执行一次写操作，所以速度慢于主从方案</li>
+<li>最后一个节点写入后才算成功写入，因此写入速度取决于集群内最慢的那台机器</li>
+</ul>
+
+<p>借用下网上的时序图：
+<img src="https://images.moonlightming.top/images/20180601071932.png" alt="" />
+当集群中任意节点执行写操作时，请求提交给PXC，PXC负责将写操作在其他节点也执行一遍，当所有节点执行成功时，才会正式写入。</p>
+
+<p>综上所述，PXC性能稍差但数据安全等级极高，适合对数据安全有要求的架构。</p>
+
+<h2 id="pxc集群部署">PXC集群部署</h2>
+
+<p>之前公司一直准备服务容器化，我负责落地方案，因此这次使用docker进行部署演示。当然，实际生产环境中使用有状态程序是需要诸多考虑的，尤其是数据库、缓存一类的场景下。打个比方，容器集群内有一个容器挂掉了，<strong>在没有存储卷绑定的情况下</strong>，swarm会新开一个容器，此时新容器数据为空，其他节点就会向这个节点进行数据同步，这会极大地拖慢集群内速度。尤其是这种速度取决于最慢节点的架构。</p>
+
+<p>首先需要下载集群搭建所需的镜像：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker pull percona/percona-xtradb-cluster</code></pre></div>
+<p>docker数据库集群有几个特点需要说明：</p>
+
+<ul>
+<li>每个容器必须各自使用独立存储，不允许容器共享</li>
+<li>由于数据一致性，不使用Service横向拓展</li>
+<li>PXC集群一般先建立一个节点做集群初始化主节点。只有在该节点启动完毕后，其他节点在加入集群。</li>
+</ul>
+
+<p>一个三节点PXC集群Docker-compose配置示例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">version<span class="p">:</span><span class="w"> </span><span class="s2">&#34;3.4&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>networks<span class="p">:</span><span class="w">
+</span><span class="w">  </span>pxc<span class="p">:</span><span class="w">
+</span><span class="w">    </span>driver<span class="p">:</span><span class="w"> </span>overlay<span class="w">
+</span><span class="w">
+</span><span class="w"></span>volumes<span class="p">:</span><span class="w">
+</span><span class="w">  </span>v1<span class="p">:</span><span class="w">
+</span><span class="w">  </span>v2<span class="p">:</span><span class="w">
+</span><span class="w">  </span>v3<span class="p">:</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>services<span class="p">:</span><span class="w">
+</span><span class="w">  </span>mysql-pxc1<span class="p">:</span><span class="w">
+</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>percona/percona-xtradb-cluster<span class="w">
+</span><span class="w">    </span>deploy<span class="p">:</span><span class="w">
+</span><span class="w">      </span>mode<span class="p">:</span><span class="w"> </span>global<span class="w">
+</span><span class="w">    </span>environment<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>MYSQL_ROOT_PASSWORD=abc123<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>CLUSTER_NAME=PXC<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>XTRABACKUP_PASSWORD=abc123<span class="w">
+</span><span class="w">    </span>volumes<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>v1<span class="p">:</span>/var/lib/mysql<span class="w">
+</span><span class="w">    </span>networks<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>pxc<span class="w">
+</span><span class="w">    </span>ports<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span><span class="m">3306</span><span class="p">:</span><span class="m">3306</span><span class="w">
+</span><span class="w">
+</span><span class="w">  </span>mysql-pxc2<span class="p">:</span><span class="w">
+</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>percona/percona-xtradb-cluster<span class="w">
+</span><span class="w">    </span>deploy<span class="p">:</span><span class="w">
+</span><span class="w">      </span>mode<span class="p">:</span><span class="w"> </span>global<span class="w">
+</span><span class="w">    </span>environment<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>MYSQL_ROOT_PASSWORD=abc123<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>CLUSTER_NAME=PXC<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>XTRABACKUP_PASSWORD=abc123<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>CLUSTER_JOIN=mysql-pxc1<span class="w">
+</span><span class="w">    </span>volumes<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>v2<span class="p">:</span>/var/lib/mysql<span class="w">
+</span><span class="w">    </span>networks<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>pxc<span class="w">
+</span><span class="w">    </span>ports<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span><span class="m">3307</span><span class="p">:</span><span class="m">3306</span><span class="w">
+</span><span class="w">    </span>depends_on<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>mysql-pxc1<span class="w">
+</span><span class="w">
+</span><span class="w">  </span>mysql-pxc3<span class="p">:</span><span class="w">
+</span><span class="w">    </span>image<span class="p">:</span><span class="w"> </span>percona/percona-xtradb-cluster<span class="w">
+</span><span class="w">    </span>deploy<span class="p">:</span><span class="w">
+</span><span class="w">      </span>mode<span class="p">:</span><span class="w"> </span>global<span class="w">
+</span><span class="w">    </span>environment<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>MYSQL_ROOT_PASSWORD=abc123<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>CLUSTER_NAME=PXC<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>XTRABACKUP_PASSWORD=abc123<span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>CLUSTER_JOIN=mysql-pxc1<span class="w">
+</span><span class="w">    </span>volumes<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>v3<span class="p">:</span>/var/lib/mysql<span class="w">
+</span><span class="w">    </span>networks<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>pxc<span class="w">
+</span><span class="w">    </span>ports<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span><span class="m">3308</span><span class="p">:</span><span class="m">3306</span><span class="w">
+</span><span class="w">    </span>depends_on<span class="p">:</span><span class="w">
+</span><span class="w">      </span>-<span class="w"> </span>mysql-pxc1</code></pre></div>
+<p>使用以下命令在docker swarm上运行集群：</p>
+
+<pre><code>docker stack deploy -c pxc.yaml pxc
+</code></pre>
+
+<p>从以上配置可以看出，每个服务当作是一个节点，多少个服务节点创建多少个volume，其中mysql-pxc1作为初始化主节点，另外两节点使用depends_on关键字让1节点优先运行。即使开头运行失败，docker自我恢复机制也会让另外两节点重新加入。需要注意的是在每个容器写入的环境变量中，1节点初始化了CLUSTER_NAME，另外两节点使用CLUSTER_JOIN去加入1节点创建的PXC集群。三个节点分别将自身3306端口映射至宿主机的3306、3307、3308。</p>
+
+<h2 id="验证">验证</h2>
+
+<p>当集群启动完毕后，已经可以尝试集群读写，此时三个MySQL节点都是可读可写的。并且保持数据一致性。可以使用远程连接工具测试，随便在一个节点执行SQL语句：</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">create</span> <span class="k">database</span> <span class="n">a</span><span class="p">;</span></code></pre></div>
+<p>现在每个节点都有一个名为a的库。</p>
+
+<p><img src="https://images.moonlightming.top/images/20180602014036.png" alt="" /></p>
+
+<h2 id="负载均衡">负载均衡</h2>
+
+<p>集群可用后，由于使用容器——服务对应的方式部署，Swarm自带的Service负载均衡无法使用，因此需要部署HaProxy容器进行负载均衡，使每个节点都承担读写任务。</p>
+
+<p>先下载HaProxy镜像：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">docker pull haproxy</code></pre></div>
+<p>编写haprox配置，在标准配置中添加如下内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">listen proxy-mysql
+       <span class="nb">bind</span> <span class="m">0</span>.0.0.0:3306
+       <span class="c1"># 网络协议
+</span><span class="c1"></span>       mode tcp
+       <span class="c1"># 负载均衡算法（轮询）
+</span><span class="c1"></span>       balance roundrobin
+       <span class="c1"># 日志格式
+</span><span class="c1"></span>       option tcplog
+       <span class="c1"># 心跳检测，需要在mysql中创建一个没有权限的haproxy用户，密码为空。Haproxy使用这个账户对MySQL进行心跳检测
+</span><span class="c1"></span>       option mysql-check user haproxy
+       server MYSQL_1 mysql-pxc1:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+       server MYSQL_2 mysql-pxc2:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+       server MYSQL_3 mysql-pxc3:3306 check weight <span class="m">1</span> maxconn <span class="m">2000</span>
+       <span class="c1"># 使用keepalive检测死链
+</span><span class="c1"></span>       option tcpka</code></pre></div>
+<p>在之前的PXC集群Docker-compose配置中添加如下内容：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="w">    </span>haproxy<span class="p">:</span><span class="w">
+</span><span class="w">        </span>image<span class="p">:</span><span class="w"> </span>haproxy<span class="w">
+</span><span class="w">        </span>ports<span class="p">:</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span><span class="m">4001</span><span class="p">:</span><span class="m">8888</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span><span class="m">4002</span><span class="p">:</span><span class="m">3306</span><span class="w">
+</span><span class="w">        </span>volumes<span class="p">:</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span>./haproxy.cfg<span class="p">:</span>/usr/local/etc/haproxy/haproxy.cfg<span class="p">:</span>ro<span class="w">
+</span><span class="w">        </span>networks<span class="p">:</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span>pxc<span class="w">
+</span><span class="w">        </span>entrypoint<span class="p">:</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span>haproxy<span class="w">
+</span><span class="w">          </span>-<span class="w"> </span><span class="s1">&#39;-f&#39;</span><span class="w">
+</span><span class="w">          </span>-<span class="w"> </span>/usr/local/etc/haproxy/haproxy.cfg</code></pre></div>
+<p>由于有haprox负责监听宿主机3306端口负载均衡，因此之前docker-compose配置中每个容器对外暴露的3306端口可以取消，生产环境中也不允许对外暴露。</p>
+
+<p>重新启动一下：</p>
+
+<pre><code>docker stack deploy -c pxc.yaml pxc
+</code></pre>
+
+<p>4001端口对外提供了HaProxy的web界面，4002对外提供PXC负载均衡。
+完毕！</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blog.moonlightming.toptags/%E8%BF%90%E7%BB%B4/">运维</a>&nbsp;
+            
+              <a href="https://blog.moonlightming.toptags/mysql/">mysql</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://blog.moonlightming.top/post/2018-06-01-%E4%BF%AE%E6%94%B9docker%E9%BB%98%E8%AE%A4%E5%AD%98%E5%82%A8%E4%BD%8D%E7%BD%AE/" data-toggle="tooltip" data-placement="top" title="修改docker默认存储位置">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://blog.moonlightming.top/post/2018-06-07-%E8%96%85%E7%BE%8A%E6%AF%9B%E4%B9%8B%E4%BD%BF%E7%94%A8cos%E5%81%9A%E5%8D%9A%E5%AE%A2%E5%9B%BE%E5%BA%8A%E5%92%8Cpicgo/" data-toggle="tooltip" data-placement="top" title="使用腾讯云COS做博客图床和Picgo工具">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:605365071@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/moonlightMing" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://blog.moonlightming.top/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              _Bubble
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.moonlightming.top">Bubble_blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.50</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.moonlightming.top/js/main.js"></script>
+<script src="https://blog.moonlightming.top/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://blog.moonlightming.top/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+<script language="javascript" type="text/javascript" src="/js/count.js"></script>
+<script language="javascript" type="text/javascript" src="/js/push-baidu.js"></script>
+
+
+  </body>
+</html>
+

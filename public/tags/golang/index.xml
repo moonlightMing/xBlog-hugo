@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Golang on Bubble_blog</title>
+    <link>https://blog.moonlightming.top/tags/golang/</link>
+    <description>Recent content in Golang on Bubble_blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <managingEditor>605365071@qq.com (_Bubble)</managingEditor>
+    <webMaster>605365071@qq.com (_Bubble)</webMaster>
+    <lastBuildDate>Thu, 29 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.moonlightming.top/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>使用hugo构建个人博客</title>
+      <link>https://blog.moonlightming.top/post/2018-11-29-%E4%BD%BF%E7%94%A8hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <pubDate>Thu, 29 Nov 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-11-29-%E4%BD%BF%E7%94%A8hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <description>&lt;p&gt;Hugo是一款由go语言编写的个人博客系统，最大的特点就是开箱即用，样式丰富，使用者只需关注内容。可以快速搭建一套静态展示类型的网站。并且自带高性能服务器，热部署等特性，是不想多花精力又想构建个人博客的极佳选择。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用Golang操作Etcd</title>
+      <link>https://blog.moonlightming.top/post/2018-11-16-%E4%BD%BF%E7%94%A8golang%E6%93%8D%E4%BD%9Cetcd/</link>
+      <pubDate>Fri, 16 Nov 2018 00:00:00 +0000</pubDate>
+      <author>605365071@qq.com (_Bubble)</author>
+      <guid>https://blog.moonlightming.top/post/2018-11-16-%E4%BD%BF%E7%94%A8golang%E6%93%8D%E4%BD%9Cetcd/</guid>
+      <description>&lt;p&gt;Etcd简单来说就是个分布式K/V数据库,在K8S等分布式服务中有重要作用。今天讲讲如何使用Golang读写Etcd服务。&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

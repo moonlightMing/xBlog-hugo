@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+  <title>使用hugo构建个人博客 - Bubble_blog</title>
+  <meta property="og:title" content="使用hugo构建个人博客" />
+  <meta name="twitter:title" content="使用hugo构建个人博客" />
+  <meta name="description" content="简洁 方便 省事儿">
+  <meta property="og:description" content="简洁 方便 省事儿">
+  <meta name="twitter:description" content="简洁 方便 省事儿">
+  <meta name="author" content="_Bubble"/><script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "name": "Bubble_blog",
+    
+    "url": "https://blog.moonlightming.top"
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "name": "",
+  "url": "https://blog.moonlightming.top"
+  
+  
+  
+  
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "item": {
+          "@id": "https://blog.moonlightming.top",
+          "name": "home"
+        }
+    },{
+        "@type": "ListItem",
+        "position": 3,
+        "item": {
+          "@id": "https://blog.moonlightming.top/post/2018-11-29-%E4%BD%BF%E7%94%A8hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/",
+          "name": "使用hugo构建个人博客"
+        }
+    }]
+}
+</script><script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "author": {
+    "name" : "_Bubble"
+  },
+  "headline": "使用hugo构建个人博客",
+  "description" : "Hugo是一款由go语言编写的个人博客系统，最大的特点就是开箱即用，样式丰富，使用者只需关注内容。可以快速搭建一套静态展示类型的网站。并且自带高性能服务器，热部署等特性，是不想多花精力又想构建个人博客的极佳选择。
+
+",
+  "inLanguage" : "zh",
+  "wordCount": 479,
+  "datePublished" : "2018-11-29T00:00:00",
+  "dateModified" : "2018-11-29T00:00:00",
+  "image" : "https://blog.moonlightming.top/img/avatar-icon.png",
+  "keywords" : [ "golang" ],
+  "mainEntityOfPage" : "https://blog.moonlightming.top/post/2018-11-29-%E4%BD%BF%E7%94%A8hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/",
+  "publisher" : {
+    "@type": "Organization",
+    "name" : "https://blog.moonlightming.top",
+    "logo" : {
+        "@type" : "ImageObject",
+        "url" : "https://blog.moonlightming.top/img/avatar-icon.png",
+        "height" :  60 ,
+        "width" :  60
+    }
+  }
+}
+</script>
+
+<meta property="og:title" content="使用hugo构建个人博客" />
+<meta property="og:description" content="简洁 方便 省事儿">
+<meta property="og:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+<meta property="og:url" content="https://blog.moonlightming.top/post/2018-11-29-%E4%BD%BF%E7%94%A8hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Bubble_blog" />
+  <meta name="twitter:title" content="使用hugo构建个人博客" />
+  <meta name="twitter:description" content="简洁 方便 省事儿">
+  <meta name="twitter:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <link href='https://blog.moonlightming.top/img/favicon.ico' rel='icon' type='image/x-icon'/>
+  <meta property="og:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:image" content="https://blog.moonlightming.top/img/avatar-icon.png" />
+  <meta name="twitter:card" content="summary" />
+  <meta property="og:url" content="https://blog.moonlightming.top/post/2018-11-29-%E4%BD%BF%E7%94%A8hugo%E6%9E%84%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Bubble_blog" />
+
+  <meta name="generator" content="Hugo 0.50" />
+  <link rel="alternate" href="https://blog.moonlightming.top/index.xml" type="application/rss+xml" title="Bubble_blog">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.css" integrity="sha384-wITovz90syo1dJWVh32uuETPVEtGigN07tkttEqPv+uR2SE/mbQcG7ATL28aI9H0" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://blog.moonlightming.top/css/main.css" /><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+  <link rel="stylesheet" href="https://blog.moonlightming.top/css/highlight.min.css" /><link rel="stylesheet" href="https://blog.moonlightming.top/css/codeblock.css" /><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.css" integrity="sha384-h/L2W9KefUClHWaty3SLE5F/qvc4djlyR4qY3NUV5HGQBBW7stbcfff1+I/vmsHh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/default-skin/default-skin.min.css" integrity="sha384-iD0dNku6PYSIQLyfTOpB06F2KCZJAKLOThS5HRe8b3ibhdEQ6eKsFf/EeFxdOt5R" crossorigin="anonymous">
+<meta name="baidu-site-verification" content="lf5PdTH7W8" />
+
+
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">切换导航</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="https://blog.moonlightming.top">Bubble_blog</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav navbar-right">
+        
+          
+            <li>
+              <a title="Blog" href="/">Blog</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="Tags" href="/tags/">Tags</a>
+            </li>
+          
+        
+          
+            <li>
+              <a title="About" href="/page/about/">About</a>
+            </li>
+          
+        
+
+        
+
+        
+      </ul>
+    </div>
+
+    
+      <div class="avatar-container">
+        <div class="avatar-img-border">
+          <a title="Bubble_blog" href="https://blog.moonlightming.top">
+            <img class="avatar-img" src="https://blog.moonlightming.top/img/avatar-icon.png" alt="Bubble_blog" />
+          </a>
+        </div>
+      </div>
+    
+
+  </div>
+</nav>
+
+
+
+
+    
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+
+  
+  
+  
+
+
+
+
+
+
+  
+
+  <header class="header-section ">
+    
+    <div class="intro-header no-img">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="post-heading">
+              
+                <h1>使用hugo构建个人博客</h1>
+              
+              
+              
+                
+                  <h2 class="post-subheading">简洁 方便 省事儿</h2>
+                
+              
+              
+                <span class="post-meta">
+  
+  
+  <i class="fas fa-calendar"></i>&nbsp;发表于 November 29, 2018
+  
+  
+  
+  _Bubble
+  
+  
+</span>
+
+
+              
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+    
+<div class="container" role="main">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+      <article role="main" class="blog-post">
+        <p>Hugo是一款由go语言编写的个人博客系统，最大的特点就是开箱即用，样式丰富，使用者只需关注内容。可以快速搭建一套静态展示类型的网站。并且自带高性能服务器，热部署等特性，是不想多花精力又想构建个人博客的极佳选择。</p>
+
+<p></p>
+
+<h2 id="部署">部署</h2>
+
+<p>Hugo开源在github上，进入对应项目页面下载对应版本。<a href="https://github.com/gohugoio/hugo/releases">下载页面</a></p>
+
+<p>下载完成后扔进系统bin目录下即可。</p>
+
+<h2 id="新建一个空白项目">新建一个空白项目</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">hugo new site myblog</code></pre></div>
+<p>目录结构如下：</p>
+
+<pre><code>cd myblog &amp;&amp; tree
+.
+├── archetypes
+│   └── default.md
+├── config.toml
+├── content
+├── data
+├── layouts
+├── static
+└── themes
+</code></pre>
+
+<p>各目录的作用可以查看官方文档，实际使用过程中只用到少数几个。</p>
+
+<h2 id="给博客添加一个主题样式">给博客添加一个主题样式</h2>
+
+<p>Hugo最吸引人的特点就是hugo拥有丰富的主题样式可以自由挑选更换。<a href="https://themes.gohugo.io/">Hugo Themes</a></p>
+
+<p>举个栗子，比如我比较喜欢<a href="https://github.com/halogenica/beautifulhugo">Beautifulhugo主题</a>，我要应用这个主题。</p>
+
+<p>首先这类主题都是独立的项目在进行维护，要应用该项目到自己的博客中需要使用git的子项目管理模块:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> myblog
+git init
+git submodule add https://github.com/halogenica/beautifulhugo.git themes/beautifulhugo</code></pre></div>
+<p>该操作会将主题样式加入到thems目录下，hugo的主题样式都存放在这个目录。</p>
+
+<p>样式已经下载到本地，接下来是应用主题，hugo的全局配置文件是项目根目录下的config.toml，一般来说每个主题样式都有自己独特的配置项及功能，因此config.toml我推荐使用所选主题自带的来覆盖本地。每个主题一般会在自己项目的exampleSite目录中留有最佳实践，该主题的配置模板也在里面。</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 进入exampleSite目录
+</span><span class="c1"></span><span class="nb">cd</span> myblog/thems/beautifulhugo/exampleSite <span class="o">&amp;&amp;</span> ls
+
+<span class="c1"># 拷贝config.toml文件覆盖自己项目
+</span><span class="c1"></span>cp config.toml ../../../</code></pre></div>
+<p>覆盖完后查看config.toml文件，内容非常多，但只需修改其中通用的几项，详情可以查看项目文档。</p>
+
+<p>我这里修改带有注释的项即可。</p>
+<div class="highlight"><pre class="chroma"><code class="language-toml" data-lang="toml"><span class="c"># 由于hugo是静态博客，需要自己指定博客的url，hugo会渲染进博客页面</span>
+<span class="nx">baseurl</span> <span class="p">=</span> <span class="s2">&#34;https://blog.moonlightming.top&#34;</span>
+<span class="nx">DefaultContentLanguage</span> <span class="p">=</span> <span class="s2">&#34;en&#34;</span>
+
+<span class="c"># 博客标题</span>
+<span class="nx">title</span> <span class="p">=</span> <span class="s2">&#34;标题&#34;</span>
+<span class="c"># 博客的样式</span>
+<span class="nx">theme</span> <span class="p">=</span> <span class="s2">&#34;beautifulhugo&#34;</span>
+
+<span class="nx">metaDataFormat</span> <span class="p">=</span> <span class="s2">&#34;yaml&#34;</span>
+<span class="nx">pygmentsStyle</span> <span class="p">=</span> <span class="s2">&#34;trac&#34;</span>
+<span class="nx">pygmentsUseClasses</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">pygmentsCodeFences</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="nx">pygmentsCodefencesGuessSyntax</span> <span class="p">=</span> <span class="kc">true</span>
+<span class="c">#pygmentsUseClassic = true</span>
+<span class="c">#pygmentOptions = &#34;linenos=inline&#34;</span>
+<span class="c">#disqusShortname = &#34;XXX&#34;</span>
+<span class="c">#googleAnalytics = &#34;XXX&#34;</span>
+
+<span class="p">[</span><span class="nx">Params</span><span class="p">]</span>
+<span class="c">#  homeTitle = &#34;Beautiful Hugo Theme&#34; # Set a different text for the header on the home page</span>
+  <span class="nx">subtitle</span> <span class="p">=</span> <span class="s2">&#34;副标题&#34;</span>
+
+  <span class="c"># 作者头像</span>
+  <span class="nx">logo</span> <span class="p">=</span> <span class="s2">&#34;img/avatar-icon.png&#34;</span> <span class="c"># Expecting square dimensions</span>
+
+  <span class="c"># favicon.ico 位置</span>
+  <span class="nx">favicon</span> <span class="p">=</span> <span class="s2">&#34;img/favicon.ico&#34;</span>
+  <span class="nx">dateFormat</span> <span class="p">=</span> <span class="s2">&#34;January 2, 2006&#34;</span>
+  <span class="nx">commit</span> <span class="p">=</span> <span class="kc">false</span>
+  <span class="nx">rss</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">comments</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">readingTime</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">wordCount</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">useHLJS</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">socialShare</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">delayDisqus</span> <span class="p">=</span> <span class="kc">true</span>
+  <span class="nx">showRelatedPosts</span> <span class="p">=</span> <span class="kc">true</span>
+
+<span class="c"># 博客作者信息</span>
+<span class="p">[</span><span class="nx">Author</span><span class="p">]</span>
+  <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Bubble&#34;</span>
+  <span class="nx">email</span> <span class="p">=</span> <span class="s2">&#34;youremail@domain.com&#34;</span>
+  <span class="nx">github</span> <span class="p">=</span> <span class="s2">&#34;Moonlightming&#34;</span>
+
+<span class="c"># 右侧标签内容，按需修改，语法参考官方文档。</span>
+<span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Blog&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">1</span>
+
+<span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;Tags&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;tags&#34;</span>
+    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">2</span>
+
+<span class="p">[[</span><span class="nx">menu</span><span class="p">.</span><span class="nx">main</span><span class="p">]]</span>
+    <span class="nx">name</span> <span class="p">=</span> <span class="s2">&#34;About&#34;</span>
+    <span class="nx">url</span> <span class="p">=</span> <span class="s2">&#34;page/about/&#34;</span>
+    <span class="nx">weight</span> <span class="p">=</span> <span class="mi">3</span></code></pre></div>
+<p>可以看到配置项非常多，如果想修改一项后立即查看效果，Hugo自带一个有热部署功能的服务器。</p>
+
+<pre><code>[root@localhost myblog]# hugo server -D
+
+                   | EN
++------------------+----+
+  Pages            |  7
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     | 34
+  Processed images |  0
+  Aliases          |  1
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 67 ms
+Watching for changes in /root/myblog/{content,data,layouts,static,themes}
+Watching for config changes in /root/myblog/config.toml
+Serving pages from memory
+Running in Fast Render Mode. For full rebuilds on change: hugo server --disableFastRender
+Web Server is available at http://localhost:1313/ (bind address 127.0.0.1)
+Press Ctrl+C to stop
+</code></pre>
+
+<p>访问<a href="http://localhost:1313/">http://localhost:1313/</a>就可以查看修改效果。</p>
+
+<h2 id="为自己的博客添加内容">为自己的博客添加内容</h2>
+
+<p>新建一篇文章</p>
+
+<pre><code>cd myblog
+hugo new post/第一篇文章.md
+</code></pre>
+
+<p>该命令会在myblog/content/post目录下新建一篇文章，该文章初始只有如下内容：</p>
+
+<pre><code>[root@localhost myblog]# cat content/post/第一篇文章.md
+
+# 文章头信息 使用toml格式书写
+---
+# 文章标题
+title: &quot;第一篇文章&quot;
+# 文章日期
+date: 2018-11-29T14:00:50+08:00
+# 草稿标识，true代表正式环境下不显示
+draft: true
+---
+
+# 下面就可以填写文章主题内容了，使用markdown格式
+</code></pre>
+
+<p>new命令不是强制的，自行拷贝md文件进去效果一样，只要格式正确即可。</p>
+
+<p>往里面添加一些内容：</p>
+
+<pre><code>---
+# 文章标题
+title: &quot;第一篇文章&quot;
+# 文章日期
+date: 2018-11-29T14:00:50+08:00
+# 草稿选项，true代表正式环境下不显示
+draft: true
+---
+
+这是第一段，可以作为全文索引开头。
+
+# more标签可选，在首页只显示more标签前面的内容，没有的话在英文环境显示第一段，中文会显示全文，这应该与对语言分段的支持不好有关。
+&lt;!--more--&gt;
+
+文章主题内容填写到这里。
+
+</code></pre>
+
+<p>在首页看到的效果是这样的</p>
+
+<p><img src="https://images.moonlightming.top/images/20181129141321.png" alt="" /></p>
+
+<p>点进去看是这样的</p>
+
+<p><img src="https://images.moonlightming.top/images/20181129141400.png" alt="" /></p>
+
+<h2 id="修改主题样式">修改主题样式</h2>
+
+<p>官方的样式由于地域不同的原因，我们需要剔除一些元素（比如推特谷歌youtube啦啦啦），需要在样式本身上做一些修改的话。可以fork一下主题项目，然后加入自己的博客中。</p>
+
+<p>主题样式采用的是golang自己的模板语法，需要有该语法基础，接下来我们修改一下样式，把下面这一排图标去掉</p>
+
+<p><img src="https://images.moonlightming.top/images/20181129150650.png" alt="" /></p>
+
+<pre><code># 我在github上fork一下beautifulhugo项目到自己的仓库，然后拉到本地
+git clone https://github.com/moonlightMing/beautifulhugo
+
+# 所有的布局文件都放在layouts之下，略微读了下代码，布局还是很清晰的，很快就定位到了元素位置
+# 上图中的分享链接就是layouts/partials/share-links.html中的内容，我把这个文件置空
+echo '' &gt; layouts/partials/share-links.html
+</code></pre>
+
+<p>提交一下代码，然后回到博客项目中，替换样式项目为我自己fork的项目</p>
+
+<pre><code># 因为子项目的删除比较麻烦，请自行百度，我这里是假设第一次添加样式的情景
+# 此时添加的子项目经是我自己修改过的了
+git submodule add https://github.com/moonlightMing/beautifulhugo.git themes/beautifulhugo
+</code></pre>
+
+<p>再看下效果就已经没有分享链接了</p>
+
+<p><img src="https://images.moonlightming.top/images/20181129152351.png" alt="" /></p>
+
+<p>大多数情况下，不爱折腾的都可以忽略掉这些小问题啦，这里只是演示。</p>
+
+<h2 id="部署到线上">部署到线上</h2>
+
+<h3 id="原生部署">原生部署</h3>
+
+<p>由于Hugo本身就是一个高性能服务器，因此可以直接部署到线上。</p>
+
+<p>启动脚本示例：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="cp">#!/bin/bash
+</span><span class="cp"></span><span class="nv">BIND_ADDR</span><span class="o">=</span><span class="s1">&#39;0.0.0.0&#39;</span>
+<span class="nv">PORT</span><span class="o">=</span><span class="m">80</span>
+hugo server -v                                  <span class="se">\
+</span><span class="se"></span>    -p <span class="si">${</span><span class="nv">PORT</span><span class="si">}</span>                                  <span class="se">\
+</span><span class="se"></span>    --bind<span class="o">=</span><span class="si">${</span><span class="nv">BIND_ADDR</span><span class="si">}</span>                         <span class="se">\
+</span><span class="se"></span>    --baseURL<span class="o">=</span><span class="s2">&#34;https://blog.moonlightming.top/&#34;</span> <span class="se">\
+</span><span class="se"></span>    --appendPort<span class="o">=</span>false</code></pre></div>
+<h3 id="使用自己的服务器">使用自己的服务器</h3>
+
+<p>如果不想使用Hugo自带的服务器，想使用Apache或者Nginx，则需要执行hugo命令生成静态文件，之后用服务器软件代理。</p>
+
+<pre><code>[root@localhost myblog]# cd myblog &amp;&amp; hugo &amp;&amp; ls public
+
+                   | EN
++------------------+----+
+  Pages            | 10
+  Paginator pages  |  0
+  Non-page files   |  0
+  Static files     | 34
+  Processed images |  0
+  Aliases          |  2
+  Sitemaps         |  1
+  Cleaned          |  0
+
+Total in 33 ms
+
+# 静态文件都生成在public目录中了 使用Nginx代理一下静态资源就好
+404.html  categories  css  img  index.html  index.xml  js  page  post  sitemap.xml  tags
+</code></pre>
+
+<h3 id="使用docker部署">使用Docker部署</h3>
+
+<p>日常更新博客自然力求便捷，Hugo也可以配合Travis进行CI/CD集成。我直接使用之前我已有的Docker方式实现CI/CD。后期会放实践记录。</p>
+
+<p>这里把Dockerfile贴一下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">FROM<span class="w"> </span>alpine<span class="p">:</span>latest<span class="w">
+</span><span class="w">
+</span><span class="w"></span>WORKDIR<span class="w"> </span>/usr/app/xblog<span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># 我这里直接将hugo的二进制文件放在项目里，并且将bin目录置入环境变量</span><span class="w">
+</span><span class="w"></span><span class="c"># 如果力求构建速度，可以将hugo二进制单独拎出来做一个镜像（多阶段构建），减少大文件拷贝时间及方便Docker直接命中缓存</span><span class="w">
+</span><span class="w"></span>ENV<span class="w"> </span>PATH<span class="w"> </span>/usr/app/xblog/bin<span class="p">:</span>$PATH<span class="w">
+</span><span class="w">
+</span><span class="w"></span>ENV<span class="w"> </span>TIME_ZONE=<span class="s2">&#34;Asia/Shanghai&#34;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>RUN<span class="w"> </span>apk<span class="w"> </span>add<span class="w"> </span>--no-cache<span class="w"> </span>tzdata<span class="w"> </span>\<span class="w">
+</span><span class="w">     </span><span class="cp">&amp;&amp;</span><span class="w"> </span>echo<span class="w"> </span>${TIME_ZONE}<span class="w"> </span><span class="sd">&gt; /etc/timezone \
+</span><span class="sd">     &amp;&amp; ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span>COPY<span class="w"> </span>.<span class="w"> </span>/usr/app/xblog<span class="w">
+</span><span class="w">
+</span><span class="w"></span>EXPOSE<span class="w"> </span><span class="m">8000</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="c"># entrypoint.sh自然就是上文的博客启动脚本</span><span class="w">
+</span><span class="w"></span>CMD<span class="w"> </span><span class="p">[</span><span class="s2">&#34;sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;entrypoint.sh&#34;</span><span class="p">]</span></code></pre></div>
+<p>打好镜像后，使用自己的CI/CD方式更新容器就好。</p>
+
+        
+          <div class="blog-tags">
+            
+              <a href="https://blog.moonlightming.toptags/golang/">golang</a>&nbsp;
+            
+          </div>
+        
+
+        
+
+        
+          
+          
+          <h4 class="see-also">也可以看看</h4>
+          <ul>
+          
+            <li><a href="/post/2018-11-16-%E4%BD%BF%E7%94%A8golang%E6%93%8D%E4%BD%9Cetcd/">使用Golang操作Etcd</a></li>
+          
+          </ul>
+          
+        
+      </article>
+
+      
+        <ul class="pager blog-pager">
+          
+            <li class="previous">
+              <a href="https://blog.moonlightming.top/post/2018-11-28-docker%E5%AE%B9%E5%99%A8%E5%86%85%E6%97%B6%E5%8C%BA%E9%97%AE%E9%A2%98/" data-toggle="tooltip" data-placement="top" title="Docker容器内时间与宿主机不一致问题">&larr; 前一篇</a>
+            </li>
+          
+          
+            <li class="next">
+              <a href="https://blog.moonlightming.top/post/2019-01-11-zabbix%E9%83%A8%E7%BD%B2%E5%AE%9E%E6%88%98/" data-toggle="tooltip" data-placement="top" title="Zabbix部署实战">后一篇 &rarr;</a>
+            </li>
+          
+        </ul>
+      
+
+
+      
+        
+        
+      
+
+    </div>
+  </div>
+</div>
+
+    <footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <ul class="list-inline text-center footer-links">
+          
+              <li>
+                <a href="mailto:605365071@qq.com" title="Email me">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fas fa-envelope fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/moonlightMing" title="GitHub">
+                  <span class="fa-stack fa-lg">
+                    <i class="fas fa-circle fa-stack-2x"></i>
+                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+          
+          <li>
+            
+            <a href="https://blog.moonlightming.top/index.xml" title="RSS">
+            
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fas fa-rss fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+        </ul>
+        <p class="credits copyright text-muted">
+          
+            
+              _Bubble
+            
+          
+
+          &nbsp;&bull;&nbsp;&copy;
+          
+            2019
+          
+
+          
+            &nbsp;&bull;&nbsp;
+            <a href="https://blog.moonlightming.top">Bubble_blog</a>
+          
+        </p>
+        
+        <p class="credits theme-by text-muted">
+          由 <a href="http://gohugo.io">Hugo v0.50</a> 强力驱动 &nbsp;&bull;&nbsp; 主题 <a href="https://github.com/halogenica/beautifulhugo">Beautiful Hugo</a> 移植自 <a href="http://deanattali.com/beautiful-jekyll/">Beautiful Jekyll</a>
+          &nbsp;&bull;&nbsp;[<a href="true"></a>]
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/katex.min.js" integrity="sha384-/y1Nn9+QQAipbNQWU65krzJralCnuOasHncUFXGkdwntGeSvQicrYkiUBwsgUqc1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.7.1/contrib/auto-render.min.js" integrity="sha384-dq1/gEHSxPZQ7DdrM82ID4YVol9BYyU7GbWlIwnwyPzotpoc57wDw/guX8EaYGPx" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://blog.moonlightming.top/js/main.js"></script>
+<script src="https://blog.moonlightming.top/js/highlight.min.js"></script>
+<script> hljs.initHighlightingOnLoad(); </script>
+<script> $(document).ready(function() {$("pre.chroma").css("padding","0");}); </script><script> renderMathInElement(document.body); </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe.min.js" integrity="sha384-QELNnmcmU8IR9ZAykt67vGr9/rZJdHbiWi64V88fCPaOohUlHCqUD/unNN0BXSqy" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.2/photoswipe-ui-default.min.js" integrity="sha384-m67o7SkQ1ALzKZIFh4CiTA8tmadaujiTa9Vu+nqPSwDOqHrDmxLezTdFln8077+q" crossorigin="anonymous"></script>
+<script src="https://blog.moonlightming.top/js/load-photoswipe.js"></script>
+
+
+
+
+
+
+<script language="javascript" type="text/javascript" src="/js/count.js"></script>
+<script language="javascript" type="text/javascript" src="/js/push-baidu.js"></script>
+
+
+  </body>
+</html>
+
