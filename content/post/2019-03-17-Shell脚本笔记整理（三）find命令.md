@@ -55,7 +55,7 @@ find /var/log/nginx -name '*.log' -mtime +5 -exec rm -f {} \;
 
 1. -a，与，默认就这个，不加也没关系。
 2. -o，或。
-3. not|!，非。
+3. not | !，非。
 
 那么上节的例子可以改写成这样：
 ```shell
@@ -69,7 +69,7 @@ locate同样是文件查找命令，不同于find命令的是find是在整块磁
 
 如果想立即查找到，需要updatedb命令进行更新数据库操作，updatedb命令同样是遍历磁盘与数据库记录比较，效率较慢，因此<b>有实时查找需求用find就好</b>。数据库文件地址为/var/lib/mlocate/mlocate.db。所使用配置文件路径为/etc/updatedb.conf。
 
-find默认精确匹配，locate这是默认非精确匹配。
+find默认精确匹配，locate默认非精确匹配。
 
 虽然locate不能查询实时的文件，但由于是从数据库中查询，效率极高。
 
@@ -79,7 +79,7 @@ find默认精确匹配，locate这是默认非精确匹配。
 
 1. -b，只返回二进制文件。
 2. -m，只返回帮助文档文件。
-3 -s，只返回源代码文件。
+3. -s，只返回源代码文件。
 
 ## which
 
