@@ -2,7 +2,7 @@
 title: Shell脚本笔记整理(三) find、locate、whereis、which命令
 subtitle: 
 date: 2019-03-17
-tags: ["运维"， "shell"]
+tags: ["运维", "shell"]
 draft: false
 ---
 
