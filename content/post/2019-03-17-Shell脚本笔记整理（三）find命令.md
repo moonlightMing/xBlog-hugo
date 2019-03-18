@@ -6,8 +6,6 @@ tags: ["运维", "shell"]
 draft: false
 ---
 
-
-
 <!--more-->
 ## find
 ### 语法格式
