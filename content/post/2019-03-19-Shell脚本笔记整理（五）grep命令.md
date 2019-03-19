@@ -1,7 +1,7 @@
 ---
-title: Shell脚本笔记整理(四) sed命令
+title: Shell脚本笔记整理(五) sed命令
 subtitle: 
-date: 2019-03-18
+date: 2019-03-19
 tags: ["运维", "shell"]
 draft: true
 ---
@@ -21,7 +21,7 @@ draft: true
 stdout | sed [option] "pattern command"
 ```
 
-2. 从文件中读入
+2. 从文件流中读入
 
 ```shell
 sed [option] "pattern command" file

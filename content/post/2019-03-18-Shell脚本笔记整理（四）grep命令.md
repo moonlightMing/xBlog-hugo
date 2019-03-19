@@ -1,7 +1,7 @@
 ---
 title: Shell脚本笔记整理(四) grep命令
 subtitle: 
-date: 2019-03-17
+date: 2019-03-18
 tags: ["运维", "shell"]
 draft: false
 ---
@@ -18,7 +18,12 @@ draft: false
 # option: 选项参数
 # pattern: 要过滤的关键字
 # file: 要在哪个文件中查找，可写多个
+
 grep [option] [pattern] [file1, file2...]
+
+# 或
+
+stdout | grep [option] [pattern]
 ```
 
 ## 选项参数
