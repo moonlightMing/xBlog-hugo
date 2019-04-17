@@ -14,7 +14,7 @@ draft: false
 
 ## 实现方法讨论
 
-WebHook简单来讲就是对外的回调HTTP接口，更新事件触发后执行部署或者更新操作。如果WebHook自身部署在Docker宿主机上，大可以用一个shell脚本执行更新操作，毕竟jenkins也是模拟这么做的。
+WebHook简单来讲就是对外的回调HTTP接口，更新事件触发后执行部署或者更新操作。如果WebHook自身部署在Docker宿主机上，大可以用一个shell脚本执行更新操作，毕竟Jenkins也是模拟这么做的。
 
 而如果希望将功能组件容器化并部署在Docker上（kubeadm也是这么做的），那么WebHook需要操作宿主机的Docker，目前我知道的有两个方法：
 
