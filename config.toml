@@ -28,7 +28,7 @@ disableLiveReload = true
   socialShare = false
   delayDisqus = true
   showRelatedPosts = true
-  ICP = "赣ICP备18006072号"
+  ICP = "赣ICP备18006072号-1"
   ICPUrl = "http://www.beian.miit.gov.cn"
 
 #[[Params.bigimg]]
