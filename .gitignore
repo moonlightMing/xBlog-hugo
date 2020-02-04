@@ -6,5 +6,6 @@
 
 !.gitignore
 .idea/
+.vscode/
 
 public/
