@@ -33,7 +33,7 @@ WebHook简单来讲就是对外的回调HTTP接口，更新事件触发后执行
 
 ### Docker开启远程访问
 
-可以查看之前的文章：[Docker开启远程访问](https://blog.moonlightming.top/post/2018-11-08-docker开启远程访问/)
+可以查看之前的文章：[Docker开启远程访问](/posts/2018-11-08-docker开启远程访问)
 
 ### Golang SDK for Docker获取
 

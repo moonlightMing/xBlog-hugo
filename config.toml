@@ -1,24 +1,20 @@
 baseurl = "https://blog.moonlightming.top"
-DefaultContentLanguage = "en"
+DefaultContentLanguage = "en-us"
 title = "Bubble_blog"
-theme = "beautifulhugo"
-#metaDataFormat = "yaml"
-#pygmentsStyle = "fruity"
+theme = "anatole"
 pygmentsUseClasses = true
 pygmentsCodeFences = true
-#pygmentsCodefencesGuessSyntax = true
-#pygmentsUseClassic = true
-#pygmentOptions = "linenos=inline"
-#disqusShortname = "XXX"
-#googleAnalytics = "XXX"
 enableRobotsTXT = true
-disableLiveReload = true
-[Params]
-#  homeTitle = "Beautiful Hugo Theme" # Set a different text for the header on the home page
-  subtitle = "听说这里填两句诗会比较有逼格"
-  logo = "img/avatar-icon.png"
+disableLiveReload = false
+
+[params]
+  title = "Bubble"
+  author = "moonlightMing"
+  description = "Welcome"
+  profilePicture = "img/avatar-icon.png"
   favicon = "img/favicon.ico"
   dateFormat = "January 2, 2006"
+  doNotLoadAnimations = true
   commit = true
   rss = true
   comments = true
@@ -27,39 +23,38 @@ disableLiveReload = true
   useHLJS = true
   socialShare = false
   delayDisqus = true
-  showRelatedPosts = true
+  showRelatedPosts = false
   ICP = "赣ICP备18006072号-1"
   ICPUrl = "http://www.beian.miit.gov.cn"
+  customCss = ["css/layout.css"]
 
-#[[Params.bigimg]]
-#  src = "img/triangle.jpg"
-#  desc = "Triangle"
-#[[Params.bigimg]]
-#  src = "img/sphere.jpg"
-#  desc = "Sphere"
-#  # position: see values of CSS background-position.
-#  position = "center top"
-#[[Params.bigimg]]
-#  src = "img/hexagon.jpg"
-#  desc = "Hexagon"
+[[params.socialIcons]]
+icon = "fab fa-github"
+title = "GitHub"
+url = "https://github.com/moonlightMing"
 
-[Author]
-  name = "_Bubble 版权所有"
+[[params.socialIcons]]
+icon = "fas fa-envelope"
+title = "e-mail"
+url = "mailto:605365071@qq.com"
+
+[menu]
+#  name = "_Bubble 版权所有"
 #  website = "yourwebsite.com"
-  email = "605365071@qq.com"
-  github = "moonlightMing"
+#  email = "605365071@qq.com"
+#  github = "moonlightMing"
 
 [[menu.main]]
-    name = "Blog"
-    url = ""
-    weight = 1
+  name = "Home"
+  url = "/"
+  weight = 100
 
 [[menu.main]]
-    name = "Tags"
-    url = "tags/"
-    weight = 2
+  name = "Tags"
+  url = "/tags/"
+  weight = 200
 
 [[menu.main]]
-    name = "About"
-    url = "page/about/"
-    weight = 3
+  name = "About"
+  url = "/page/about/"
+  weight = 300

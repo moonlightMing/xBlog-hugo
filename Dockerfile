@@ -1,17 +1,7 @@
-FROM alpine:latest
+FROM klakegg/hugo:0.82.0-onbuild as builder
 
-WORKDIR /usr/app/xblog
+COPY . /src
 
-ENV PATH /usr/app/xblog/bin:$PATH
+FROM nginx:1.19.10
 
-ENV TIME_ZONE="Asia/Shanghai"
-
-RUN apk add --no-cache tzdata \
-     && echo ${TIME_ZONE} > /etc/timezone \
-     && ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
-
-EXPOSE 8000
-
-COPY . /usr/app/xblog
-
-CMD ["sh", "entrypoint.sh"]
+COPY --from=builder /target /usr/share/nginx/html
