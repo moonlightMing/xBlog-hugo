@@ -1,4 +1,4 @@
-baseurl = "https://blog.moonlightming.top"
+baseurl = "https://blog.moonlightming.com"
 DefaultContentLanguage = "en-us"
 title = "Bubble_blog"
 theme = "anatole"
@@ -24,8 +24,8 @@ disableLiveReload = false
   socialShare = false
   delayDisqus = true
   showRelatedPosts = false
-  ICP = "赣ICP备18006072号-1"
-  ICPUrl = "http://www.beian.miit.gov.cn"
+  copyright = "赣ICP备18006072号-2"
+  copyrightURL = "http://beian.miit.gov.cn"
   customCss = ["css/layout.css"]
 
 [[params.socialIcons]]
