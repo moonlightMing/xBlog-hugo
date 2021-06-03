@@ -1,0 +1,22 @@
+<div class="footer">
+    <div class="by_farbox">
+        &copy; {{ .Site.Params.author }}{{ if isset .Site.Params "copyright" }}
+        <a href="{{ .Site.Params.copyrightURL }}">
+            {{ .Site.Params.copyright }}
+        </a>
+        <div>
+            <a target="_blank"
+               href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=42018502005218"
+               style="display:inline-block;text-decoration:none;height:20px;line-height:20px;"
+            >
+                <img src="/img/beian.png" style="float:left;"/>
+                <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px;color:#939393;font-size: x-small">
+                    鄂公网安备42018502005218号
+                </p>
+            </a>
+        </div>
+        {{ else }}
+        {{ now.Format "2006"}}
+        {{end}}
+    </div>
+</div>
