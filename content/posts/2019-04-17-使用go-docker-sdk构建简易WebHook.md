@@ -44,7 +44,7 @@ go get -u github.com/docker/docker/client
 ### 要访问的Docker API版本
 可以通过docker version命令获取，如图：
 
-![](https://images.moonlightming.top/images/20190416171215.png)
+![](https://images.moonlightming.com/images/20190416171215.png)
 
 ### 注册阿里云容器仓库服务
 
